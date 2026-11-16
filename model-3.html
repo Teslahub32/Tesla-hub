@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model 3 - Tesla Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; color: #fff; font-family: Arial, sans-serif; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 50;
+    }
+    .logo { font-size: 24px; font-weight: 900; text-decoration: none; color: white; }
+    .logo span { color: #ef4444; }
+    .nav-links { display: flex; gap: 25px; align-items: center; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; }
+    .nav-links a:hover { color: #ef4444; }
+    .register { background: #ef4444; color: white !important; padding: 7px 16px; border-radius: 50px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+    .title { margin-bottom: 25px; }
+    .title h1 { font-size: 40px; margin-bottom: 6px; }
+    .title p { color: #aaa; font-size: 17px; }
+    .price { font-size: 30px; font-weight: bold; margin-top: 10px; }
+
+    .viewer-section {
+      background: #111;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .viewer-section h2 { margin-bottom: 20px; font-size: 22px; }
+    .viewer-box {
+      max-width: 700px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .viewer-box img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+    .viewer-controls {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .viewer-controls button {
+      background: #222;
+      color: white;
+      border: 1px solid #444;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .viewer-controls button:hover {
+      background: #ef4444;
+      border-color: #ef4444;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 45px;
+    }
+    .content h2 { font-size: 22px; margin-bottom: 18px; }
+    .specs li {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid #222;
+      color: #ccc;
+    }
+    .highlights li { margin-bottom: 11px; color: #ccc; }
+
+    .buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+    .btn {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      padding: 15px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn-white { background: white; color: black; }
+    .btn-red { background: #ef4444; color: white; }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #222;
+    }
+
+    @media (max-width: 768px) {
+      .gallery, .content { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .viewer-box img { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo"><span>T</span>esla Hub</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="faq.html">FAQ</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register">Register</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="title">
+      <h1>Model 3</h1>
+      <p>Highland • Rear-Wheel Drive / AWD</p>
+      <div class="price">$18,999</div>
+    </div>
+
+    <!-- 360 Degree Viewer -->
+    <div class="viewer-section">
+      <h2>360° Vehicle Viewer</h2>
+      <div class="viewer-box">
+        <img id="viewerImage" src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1000&q=80" alt="Model 3">
+      </div>
+      <div class="viewer-controls">
+        <button onclick="changeView(0)">Front</button>
+        <button onclick="changeView(1)">Side</button>
+        <button onclick="changeView(2)">Rear</button>
+        <button onclick="changeView(3)">Interior</button>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1000&q=80" alt="Model 3">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Tesla_Model_3_Side.jpg/1280px-Tesla_Model_3_Side.jpg" alt="Side">
+      <img src="https://thumbs.dreamstime.com/b/model-3-312451790.jpg" alt="Rear">
+      <img src="https://images.unsplash.com/photo-1553260188-75a8d6205b6c?auto=format&fit=crop&w=1200&q=80" alt="Interior">
+    </div>
+
+    <div class="content">
+      <div>
+        <h2>Key Specifications</h2>
+        <ul class="specs">
+          <li><span>Range</span> <span>Up to 321 miles</span></li>
+          <li><span>0–60 mph</span> <span>5.8 – 6.2 sec</span></li>
+          <li><span>Top Speed</span> <span>125 mph</span></li>
+          <li><span>Battery</span> <span>LFP Battery</span></li>
+          <li><span>Charging</span> <span>175–225 kW</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Highlights</h2>
+        <ul class="highlights">
+          <li>• Panoramic glass roof</li>
+          <li>• Minimalist interior</li>
+          <li>• Wireless charging</li>
+          <li>• Autopilot features</li>
+          <li>• Large cargo space</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a href="payment-model-3.html" class="btn btn-white">View Payment Plan</a>
+      <a href="chat.html" class="btn btn-red">Chat with Admin for Payment</a>
+    </div>
+  </div>
+
+  <footer>© 2026 Tesla Hub</footer>
+
+  <script>
+    const views = [
+      "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1000&q=80",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Tesla_Model_3_Side.jpg/1280px-Tesla_Model_3_Side.jpg",
+      "https://thumbs.dreamstime.com/b/model-3-312451790.jpg",
+      "https://images.unsplash.com/photo-1553260188-75a8d6205b6c?auto=format&fit=crop&w=1200&q=80"
+    ];
+
+    function changeView(index) {
+      document.getElementById('viewerImage').src = views[index];
+    }
+  </script>
+</body><!-- Loading Screen -->
+<div id="loader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.4s ease;">
+  <div style="width:50px;height:50px;border:4px solid #333;border-top:4px solid #ef4444;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+</div>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hidden { opacity: 0; pointer-events: none; }
+</style>
+
+<script>
+  window.addEventListener('load', function() {
+    document.getElementById('loader').classList.add('hidden');
+  });
+</script>
+</html>

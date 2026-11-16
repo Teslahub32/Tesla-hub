@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - Model X | Tesla Hub</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Arial,sans-serif}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid #222;position:sticky;top:0;background:rgba(0,0,0,0.95);z-index:50}
+    .logo{font-size:24px;font-weight:900;text-decoration:none;color:white}.logo span{color:#ef4444}
+    .nav-links{display:flex;gap:25px;align-items:center}.nav-links a{color:#ccc;text-decoration:none;font-size:15px}.nav-links a:hover{color:#ef4444}
+    .register{background:#ef4444;color:white!important;padding:7px 16px;border-radius:50px}
+    .container{max-width:900px;margin:0 auto;padding:50px 20px}
+    .car-header{display:flex;gap:30px;align-items:center;margin-bottom:40px;background:#111;padding:25px;border-radius:16px}
+    .car-header img{width:220px;height:140px;object-fit:cover;border-radius:12px}
+    .car-header h1{font-size:32px;margin-bottom:8px}.price{font-size:26px;color:#ef4444;font-weight:bold}
+    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:40px}
+    .plan{background:#111;padding:25px;border-radius:16px;text-align:center;border:1px solid #222}
+    .plan h3{margin-bottom:12px;font-size:20px}.plan .amount{font-size:28px;font-weight:bold;margin:15px 0;color:#ef4444}
+    .plan p{color:#aaa;font-size:14px;margin-bottom:20px}
+    .btn{display:inline-block;background:#ef4444;color:white;padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:bold}
+    .btn:hover{background:#dc2626}
+    footer{text-align:center;padding:25px;color:#666;border-top:1px solid #222;margin-top:50px}
+    @media(max-width:768px){.car-header{flex-direction:column;text-align:center}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo"><span>T</span>esla Hub</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="faq.html">FAQ</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register">Register</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="car-header">
+      <img src="https://hips.hearstapps.com/hmg-prod/images/2026-tesla-model-x-183-690cc6459b5f7.jpg?crop=0.826xw:0.619xh;0.0717xw,0.220xh&resize=1200:*" alt="Model X">
+      <div>
+        <h1>Model X</h1>
+        <div class="price">$29,999</div>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom:25px;">Choose Payment Plan</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Full Payment</h3>
+        <div class="amount">$29,999</div>
+        <p>Pay the full amount at once</p>
+        <a href="chat.html" class="btn">Chat with Admin</a>
+      </div>
+      <div class="plan">
+        <h3>6 Months Plan</h3>
+        <div class="amount">$5,000 /mo</div>
+        <p>Pay over 6 months</p>
+        <a href="chat.html" class="btn">Chat with Admin</a>
+      </div>
+      <div class="plan">
+        <h3>12 Months Plan</h3>
+        <div class="amount">$2,500 /mo</div>
+        <p>Pay over 12 months</p>
+        <a href="chat.html" class="btn">Chat with Admin</a>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Tesla Hub</footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Tesla Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+    .logo {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .logo span { color: #ef4444; }
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 35px;
+    }
+    .form-box {
+      background: #111;
+      padding: 35px 30px;
+      border-radius: 16px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #000;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+    input:focus {
+      border-color: #ef4444;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #dc2626;
+    }
+    .bottom-text {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .bottom-text a {
+      color: #ef4444;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"><span>T</span>esla Hub</div>
+    <p class="subtitle">Login to your account</p>
+
+    <div class="form-box">
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+
+        <label>Password</label>
+        <input type="password" id="password" required placeholder="Enter your password">
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <p class="bottom-text">
+      Don't have an account? <a href="register.html">Create one</a>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      let users = JSON.parse(localStorage.getItem('teslaUsers')) || [];
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        alert('Login successful! Welcome ' + user.name);
+        window.location.href = 'account.html';
+      } else {
+        alert('Wrong email or password');
+      }
+    });
+  </script>
+</body>
+</html>

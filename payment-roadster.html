@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation - Flying Roadster | Tesla Hub</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:Arial,sans-serif}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid #222;position:sticky;top:0;background:rgba(0,0,0,0.95);z-index:50}
+    .logo{font-size:24px;font-weight:900;text-decoration:none;color:white}.logo span{color:#ef4444}
+    .nav-links{display:flex;gap:25px;align-items:center}.nav-links a{color:#ccc;text-decoration:none;font-size:15px}.nav-links a:hover{color:#ef4444}
+    .register{background:#ef4444;color:white!important;padding:7px 16px;border-radius:50px}
+    .container{max-width:900px;margin:0 auto;padding:50px 20px}
+    .car-header{display:flex;gap:30px;align-items:center;margin-bottom:40px;background:#111;padding:25px;border-radius:16px}
+    .car-header img{width:220px;height:140px;object-fit:cover;border-radius:12px}
+    .car-header h1{font-size:32px;margin-bottom:8px}.price{font-size:26px;color:#ef4444;font-weight:bold}
+    .plans{display:grid;grid-template-columns:1fr;gap:20px;max-width:400px;margin:0 auto 40px}
+    .plan{background:#111;padding:30px;border-radius:16px;text-align:center;border:2px solid #ef4444}
+    .plan h3{margin-bottom:12px;font-size:22px}.plan .amount{font-size:32px;font-weight:bold;margin:15px 0;color:#ef4444}
+    .plan p{color:#aaa;font-size:15px;margin-bottom:25px}
+    .btn{display:inline-block;background:#ef4444;color:white;padding:14px 35px;border-radius:50px;text-decoration:none;font-weight:bold;font-size:16px}
+    .btn:hover{background:#dc2626}
+    footer{text-align:center;padding:25px;color:#666;border-top:1px solid #222;margin-top:50px}
+    @media(max-width:768px){.car-header{flex-direction:column;text-align:center}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo"><span>T</span>esla Hub</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="faq.html">FAQ</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register">Register</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="car-header">
+      <img src="https://hips.hearstapps.com/hmg-prod/images/07c32cea-cc83-40d2-96de-c3c62d3c5ec8.jpg?crop=0.541xw:0.406xh;0.23xw,0.37xh&resize=1200:*" alt="Roadster">
+      <div>
+        <h1>Flying Roadster</h1>
+        <div class="price">Reservation: $49,999</div>
+      </div>
+    </div>
+
+    <h2 style="text-align:center;margin-bottom:30px;">Reservation Only</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Reserve Your Spot</h3>
+        <div class="amount">$49,999</div>
+        <p>Refundable deposit to secure your place in line for the Tesla Flying Roadster</p>
+        <a href="chat.html" class="btn">Chat with Admin to Reserve</a>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Tesla Hub</footer>
+</body>
+</html>

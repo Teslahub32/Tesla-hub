@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Tesla Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; color: #fff; font-family: Arial, sans-serif; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; border-bottom: 1px solid #222; position: sticky; top: 0; background: rgba(0,0,0,0.95); z-index: 100; }
+    .logo { font-size: 24px; font-weight: 900; text-decoration: none; color: white; }
+    .logo span { color: #ef4444; }
+    .nav-links { display: flex; gap: 25px; align-items: center; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; }
+    .nav-links a:hover { color: #ef4444; }
+    .register { background: #ef4444; color: white !important; padding: 7px 16px; border-radius: 50px; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+    h1 { text-align: center; font-size: 36px; margin-bottom: 40px; }
+
+    .faq-item { background: #111; border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+    .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+    .faq-question:hover { background: #1a1a1a; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; color: #aaa; line-height: 1.6; }
+    .faq-answer.open { max-height: 200px; padding: 0 20px 20px; }
+
+    footer { text-align: center; padding: 25px; color: #666; font-size: 14px; border-top: 1px solid #222; margin-top: 40px; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo"><span>T</span>esla Hub</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="faq.html" style="color:#ef4444;">FAQ</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="register">Register</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How do I make a payment?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Click on any car, go to the payment plan page, then click “Chat with Admin for Payment”. Our admin will guide you through the process.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Is the Roadster available for purchase?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        The Flying Roadster is currently available for reservation only at $49,999. You can start the process through Chat with Admin.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How many days does it take my car to get deliver after payment 
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        it takes less than 2 weeks from your payment to get your car
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Is there anybody or assistance i can speak with?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        please use the Chat with Admin feature for any inquiries.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        How long does the reservation process take?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        After chatting with admin and confirming, the process is usually completed within a short time.
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 Tesla Hub</footer>
+
+  <script>
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const span = element.querySelector('span');
+
+      if (answer.classList.contains('open')) {
+        answer.classList.remove('open');
+        span.textContent = '+';
+      } else {
+        answer.classList.add('open');
+        span.textContent = '−';
+      }
+    }
+  </script>
+</body>
+</html>
