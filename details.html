@@ -3,130 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Model Y - Tesla Hub</title>
+  <title>Chat with Admin - Tesla Hub</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #000; color: #fff; font-family: Arial, sans-serif; }
+    body { background: #000; color: #fff; font-family: Arial, sans-serif; height: 100vh; display: flex; flex-direction: column; }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 40px;
-      border-bottom: 1px solid #222;
-      position: sticky;
-      top: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 50;
-    }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 40px; border-bottom: 1px solid #222; background: #000; }
     .logo { font-size: 24px; font-weight: 900; text-decoration: none; color: white; }
     .logo span { color: #ef4444; }
-    .nav-links { display: flex; gap: 25px; align-items: center; }
-    .nav-links a { color: #ccc; text-decoration: none; font-size: 15px; }
+    .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-size: 15px; }
     .nav-links a:hover { color: #ef4444; }
-    .register { background: #ef4444; color: white !important; padding: 7px 16px; border-radius: 50px; }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+    .chat-container { flex: 1; display: flex; flex-direction: column; max-width: 800px; margin: 20px auto; width: 95%; background: #111; border-radius: 16px; overflow: hidden; border: 1px solid #222; }
 
-    .title { margin-bottom: 25px; }
-    .title h1 { font-size: 40px; margin-bottom: 6px; }
-    .title p { color: #aaa; font-size: 17px; }
-    .price { font-size: 30px; font-weight: bold; margin-top: 10px; }
+    .chat-header { background: #1a1a1a; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+    .chat-header h2 { font-size: 20px; }
+    .status { color: #22c55e; font-size: 14px; }
 
-    .viewer-section {
-      background: #111;
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-    .viewer-section h2 { margin-bottom: 20px; font-size: 22px; }
-    .viewer-box {
-      max-width: 700px;
-      margin: 0 auto;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .viewer-box img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-    }
-    .viewer-controls {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .viewer-controls button {
-      background: #222;
-      color: white;
-      border: 1px solid #444;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .viewer-controls button:hover {
-      background: #ef4444;
-      border-color: #ef4444;
-    }
+    .messages { flex: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; min-height: 400px; max-height: 500px; background: #0d0d0d; }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-    .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+    .message { max-width: 75%; padding: 12px 18px; border-radius: 18px; line-height: 1.5; font-size: 15px; }
+    .admin { background: #222; align-self: flex-start; border-bottom-left-radius: 5px; }
+    .user { background: #ef4444; align-self: flex-end; border-bottom-right-radius: 5px; }
 
-    .content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 45px;
-    }
-    .content h2 { font-size: 22px; margin-bottom: 18px; }
-    .specs li {
-      display: flex;
-      justify-content: space-between;
-      padding: 11px 0;
-      border-bottom: 1px solid #222;
-      color: #ccc;
-    }
-    .highlights li { margin-bottom: 11px; color: #ccc; }
+    .input-area { display: flex; gap: 12px; padding: 18px; background: #1a1a1a; border-top: 1px solid #333; }
+    .input-area input { flex: 1; padding: 14px 20px; border: none; border-radius: 50px; background: #222; color: white; outline: none; font-size: 15px; }
+    .input-area button { background: #ef4444; color: white; border: none; padding: 14px 28px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 15px; }
+    .input-area button:hover { background: #dc2626; }
 
-    .buttons { display: flex; gap: 15px; flex-wrap: wrap; }
-    .btn {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      padding: 15px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .btn-white { background: white; color: black; }
-    .btn-red { background: #ef4444; color: white; }
+    .clear-btn { background: transparent; border: 1px solid #444; color: #aaa; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+    .clear-btn:hover { border-color: #ef4444; color: #ef4444; }
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #666;
-      font-size: 14px;
-      border-top: 1px solid #222;
-    }
-
-    @media (max-width: 768px) {
-      .gallery, .content { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .viewer-box img { height: 260px; }
-    }
+    footer { text-align: center; padding: 15px; color: #666; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -137,97 +45,92 @@
       <a href="index.html">Home</a>
       <a href="inventory.html">Inventory</a>
       <a href="faq.html">FAQ</a>
-      <a href="login.html">Login</a>
-      <a href="register.html" class="register">Register</a>
     </div>
   </nav>
 
-  <div class="container">
-    <div class="title">
-      <h1>Model Y</h1>
-      <p>Long Range • Dual Motor AWD</p>
-      <div class="price">$23,999</div>
-    </div>
-
-    <!-- 360 Degree Viewer -->
-    <div class="viewer-section">
-      <h2>360° Vehicle Viewer</h2>
-      <div class="viewer-box">
-        <img id="viewerImage" src="https://images.carexpert.com.au/resize/960/-/cms/v1/media/2023-01-2022-tesla-model-y-maric-10.jpg" alt="Model Y">
-      </div>
-      <div class="viewer-controls">
-        <button onclick="changeView(0)">Front</button>
-        <button onclick="changeView(1)">Side</button>
-        <button onclick="changeView(2)">Rear</button>
-        <button onclick="changeView(3)">Interior</button>
-      </div>
-    </div>
-
-    <!-- Gallery -->
-    <div class="gallery">
-      <img src="https://images.carexpert.com.au/resize/960/-/cms/v1/media/2023-01-2022-tesla-model-y-maric-10.jpg" alt="Model Y">
-      <img src="https://picture.biltorvetcdn.net/cdn-cgi/image/width%3D1600%2Cheight%3D900%2Cfit%3Dcover%2Cformat%3Dauto/biltorvet/article/23649a6140db4853a6106bc916d2a464.jpg" alt="Side">
-      <img src="https://images.carexpert.com.au/resize/3000/-/app/uploads/2023/03/2023-Tesla-Model-Y-RWD-29.jpg" alt="Rear">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Tesla_Model_Y_2025_interior.jpg/1280px-Tesla_Model_Y_2025_interior.jpg" alt="Interior">
-    </div>
-
-    <div class="content">
+  <div class="chat-container">
+    <div class="chat-header">
       <div>
-        <h2>Key Specifications</h2>
-        <ul class="specs">
-          <li><span>Drivetrain</span> <span>RWD or Dual-Motor AWD</span></li>
-          <li><span>Range</span> <span>294 – 357 miles</span></li>
-          <li><span>Charging</span> <span>Up to 250 kW</span></li>
-          <li><span>Seating</span> <span>5 or 7 seats</span></li>
-          <li><span>Screen</span> <span>15.4 – 16 inch</span></li>
-        </ul>
+        <h2>Chat with Admin</h2>
+        <div class="status">● Online</div>
       </div>
-      <div>
-        <h2>Highlights</h2>
-        <ul class="highlights">
-          <li>• Minimalist interior design</li>
-          <li>• Wireless phone charging</li>
-          <li>• Excellent safety ratings</li>
-          <li>• Over-the-air updates</li>
-          <li>• Access to Supercharger network</li>
-          <li>• Spacious cargo + frunk</li>
-        </ul>
+      <button class="clear-btn" onclick="clearChat()">Clear Chat</button>
+    </div>
+
+    <div class="messages" id="messages">
+      <div class="message admin">
+        Hello! Welcome to Tesla Hub. How can I help you today? (Payment, Reservation, Model questions...)
       </div>
     </div>
 
-    <div class="buttons">
-      <a href="payment-model-y.html" class="btn btn-white">View Payment Plan</a>
-      <a href="chat.html" class="btn btn-red">Chat with Admin for Payment</a>
+    <div class="input-area">
+      <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="handleKey(event)">
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
   <footer>© 2026 Tesla Hub</footer>
 
   <script>
-    const views = [
-      "https://images.carexpert.com.au/resize/960/-/cms/v1/media/2023-01-2022-tesla-model-y-maric-10.jpg",
-      "https://picture.biltorvetcdn.net/cdn-cgi/image/width%3D1600%2Cheight%3D900%2Cfit%3Dcover%2Cformat%3Dauto/biltorvet/article/23649a6140db4853a6106bc916d2a464.jpg",
-      "https://images.carexpert.com.au/resize/3000/-/app/uploads/2023/03/2023-Tesla-Model-Y-RWD-29.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Tesla_Model_Y_2025_interior.jpg/1280px-Tesla_Model_Y_2025_interior.jpg"
-  ]
+    const messagesDiv = document.getElementById('messages');
+    const input = document.getElementById('messageInput');
 
-    function changeView(index) {
-      document.getElementById('viewerImage').src = views[index];
+    const adminReplies = [
+      "Thank you for your message. How can I assist you further?",
+      "For payment or reservation, please tell me which model you're interested in.",
+      "I can help you with Model 3, Model Y, Model X, Model S, or the Flying Roadster.",
+      "Please share more details so I can assist you better.",
+      "Got it! Let me know if you need anything else.",
+      "Would you like me to explain the payment plans?"
+    ];
+
+    function sendMessage() {
+      const text = input.value.trim();
+      if (text === "") return;
+
+      addMessage(text, 'user');
+      input.value = "";
+
+      setTimeout(() => {
+        const reply = adminReplies[Math.floor(Math.random() * adminReplies.length)];
+        addMessage(reply, 'admin');
+      }, 900 + Math.random() * 800);
+    }
+
+    function addMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.textContent = text;
+      messagesDiv.appendChild(div);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') sendMessage();
+    }
+
+    function clearChat() {
+      messagesDiv.innerHTML = `
+        <div class="message admin">
+          Hello! Welcome to Tesla Hub. How can I help you today? (Payment, Reservation, Model questions...)
+        </div>
+      `;
     }
   </script>
-</body><!-- Loading Screen -->
-<div id="loader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.4s ease;">
-  <div style="width:50px;height:50px;border:4px solid #333;border-top:4px solid #ef4444;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
-</div>
 
-<style>
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .hidden { opacity: 0; pointer-events: none; }
-</style>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6afb90a4e1ebcd3cc546c1a9/1k7jaq1hq';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
 
-<script>
-  window.addEventListener('load', function() {
-    document.getElementById('loader').classList.add('hidden');
-  });
-</script>
+</body>
 </html>
